@@ -77,6 +77,27 @@ public class Topic_02_Xpath_Css_PartII {
 		
 	}
 	
+	@Test
+	public void TC_05_Create_New_Account() {
+		driver.get("http://live.demoguru99.com/");
+		
+		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
+		driver.findElement(By.xpath(".//a[@title='Create an Account']")).click();
+		
+		driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys("New");
+		driver.findElement(By.xpath("//input[@id='middlename']")).sendKeys("Account");
+		driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys("Customer");
+		driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys("testerSe@lenium.com");
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Abcd1234");
+		driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys("Abcd1234");
+		driver.findElement(By.xpath("//button[@title='Register']")).click();
+				
+		
+		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='success-msg']//span")).getText(),
+				"Thank you for registering with Main Website Store.");
+		
+	}
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
